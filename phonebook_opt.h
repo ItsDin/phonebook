@@ -3,9 +3,8 @@
 
 #define MAX_LAST_NAME_SIZE 16
 
-/* original version */
-typedef struct __PHONE_BOOK_ENTRY {
-    char lastName[MAX_LAST_NAME_SIZE];
+/* opt version */
+typedef struct __PHONE_BOOK_OTHERDATA {
     char firstName[16];
     char email[16];
     char phone[10];
@@ -15,8 +14,14 @@ typedef struct __PHONE_BOOK_ENTRY {
     char city[16];
     char state[2];
     char zip[5];
+} PB_Otherdata;
+
+typedef struct __PHONE_BOOK_ENTRY {
+    char lastName[MAX_LAST_NAME_SIZE];
     struct __PHONE_BOOK_ENTRY *pNext;
+    PB_Otherdata *pOtherdata;
 } entry;
+
 
 entry *findName(char lastname[], entry *pHead);
 entry *append(char lastName[], entry *e);
