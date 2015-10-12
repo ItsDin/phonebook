@@ -50,12 +50,4 @@ entry *append(char lastName[], entry *e)
         hash_table[bucket] = e;
     }
     return e;
-
-//    e->pNext = (entry *) malloc(sizeof(entry));
-//    e = e->pNext;
-//    strcpy(e->lastName, lastName);
-//    e->pNext = NULL;
-
-//    return e;
-//    return NULL;
 }
