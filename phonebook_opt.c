@@ -1,4 +1,7 @@
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdint.h>
 
 #include "phonebook_opt.h"
 
@@ -6,7 +9,7 @@
 entry *hash_table[HASH_SIZE];
 entry *hash_array[HASH_SIZE];
 
-static inline unit32_t hashFind(char lastname[])
+static inline int hashFind(char lastname[])
 {
     int number;
     number = 0;
@@ -32,20 +35,21 @@ entry *findName(char lastname[], entry *pHead)
 entry *append(char lastName[], entry *e)
 {
     int bucket = hashFind(lastName);
-    entry *new_one = (entry *)malloc(sizeof(entry));
-    
+
+    e->pNext = (entry *) malloc(sizeof(entry));
+    e = e -> pNext;
     if(hash_table[bucket]){
-        hash_array[bucket] -> pNext = new_one;
-        new_one -> pNext = NULL;
-        strcpy(new_one -> lastName, lastName);
-        hash_array[bucket] = new_one;
+        hash_array[bucket] -> pNext = e;
+        e -> pNext = NULL;
+        strcpy(e -> lastName, lastName);
+        hash_array[bucket] = e;
     }else{
-        new_one -> pNext = NULL;
-        strcpy(new_one -> lastName, lastName);
-        hash_array[bucket] = new_one;
-        hash_table[bucket] = new_one;
+        e -> pNext = NULL;
+        strcpy(e -> lastName, lastName);
+        hash_array[bucket] = e;
+        hash_table[bucket] = e;
     }
-    return new_one;
+    return e;
 
 //    e->pNext = (entry *) malloc(sizeof(entry));
 //    e = e->pNext;
