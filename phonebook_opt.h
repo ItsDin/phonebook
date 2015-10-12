@@ -2,6 +2,7 @@
 #define _PHONEBOOK_H
 
 #define MAX_LAST_NAME_SIZE 16
+#define HASH_SIZE 113
 
 /* opt version */
 typedef struct __PHONE_BOOK_OTHERDATA {
