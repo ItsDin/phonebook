@@ -7,7 +7,6 @@
 
 /* hash version */
 entry *hash_table[HASH_SIZE];
-entry *hash_array[HASH_SIZE];
 
 static inline int hashTablePhone(char lastname[])
 {
@@ -39,14 +38,13 @@ entry *append(char lastName[], entry *e)
     e->pNext = (entry *) malloc(sizeof(entry));
     e = e->pNext;
     if(hash_table[bucket]){
-        hash_array[bucket]->pNext = e;
+        hash_table[bucket]->pNext = e;
         e -> pNext = NULL;
         strcpy(e -> lastName, lastName);
-        hash_array[bucket] = e;
+        hash_table[bucket] = e;
     }else{
         e->pNext = NULL;
         strcpy(e->lastName, lastName);
-        hash_array[bucket] = e;
         hash_table[bucket] = e;
     }
     free(e->pNext);
